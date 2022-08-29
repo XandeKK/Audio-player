@@ -1,4 +1,5 @@
 class Music < ApplicationRecord
+  has_many :music_categories, dependent: :destroy
   has_many :authors, dependent: :destroy
   
   has_one_attached :music

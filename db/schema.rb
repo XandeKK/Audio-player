@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_29_174735) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_29_175301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_174735) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "music_categories", force: :cascade do |t|
+    t.bigint "music_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_music_categories_on_category_id"
+    t.index ["music_id"], name: "index_music_categories_on_music_id"
+  end
+
   create_table "musics", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -81,4 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_174735) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authors", "musics"
   add_foreign_key "authors", "users"
+  add_foreign_key "music_categories", "categories"
+  add_foreign_key "music_categories", "musics"
 end
