@@ -1,0 +1,14 @@
+one:
+  email: one@examples.com
+  encrypted_password: <%= BCrypt::Password.create('password')%>
+  remember_token: <%= Clearance::Token.new %>
+  name: paulo
+  artistic_name: paul
+
+two:
+  email: two@examples.com
+  encrypted_password: <%= BCrypt::Password.create('password')%>
+  remember_token: <%= Clearance::Token.new %>
+  name: piko
+  artistic_name: tauro
+  
