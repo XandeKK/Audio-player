@@ -12,9 +12,13 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   def sign_in
+    sign_in_as(:one)
+  end
+
+  def sign_in_as(id)
     post session_path, params: {
       session: {
-        email: users(:one).email,
+        email: users(id).email,
         password: "password"
       }
     }
