@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   get "/sign_up" => "users#new", as: "sign_up"
 
   resources :musics, except: :index
+
+  resources :profile, except: [:index, :new, :create, :destroy]
+  delete "/delete/profile", to: "profile#destroy", as: "delete_profile"
 end
