@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: d113aabf335ca0bbea2223a8136c2161b7f43659
+  branch: master
+  specs:
+    faker (2.22.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -192,6 +200,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    ransack (3.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     redis (4.8.0)
     regexp_parser (2.5.0)
     reline (0.3.1)
@@ -251,12 +263,14 @@ DEPENDENCIES
   capybara
   clearance
   debug
+  faker!
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
+  ransack
   redis (~> 4.0)
   selenium-webdriver
   sprockets-rails
