@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   resources :profile, except: [:index, :new, :create, :destroy]
   delete "/delete/profile", to: "profile#destroy", as: "delete_profile"
+
+  post "search", to: "search#index", format: :turbo_stream
 end
