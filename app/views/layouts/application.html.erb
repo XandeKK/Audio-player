@@ -12,6 +12,7 @@
   </head>
 
   <body>
+    <%= render partial: "shared/navbar" unless ["users", "sessions", "passwords"].include?(controller_name)%>
     <main class="container">
       <%= yield %>
     </main>
