@@ -11,10 +11,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gray-100 dark:bg-gray-700">
+  <body class="bg-[#F8FAFC] dark:bg-[#0A1122]">
     <%= render partial: "shared/navbar" unless ["users", "sessions", "passwords"].include?(controller_name)%>
     <main>
       <%= yield %>
     </main>
+    <%= render partial: "shared/player_audio" unless ["users", "sessions", "passwords"].include?(controller_name) %>
   </body>
 </html>

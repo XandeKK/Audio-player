@@ -1,7 +1,7 @@
-<div id="clearance" class="drop-shadow-lg container mx-auto my-6 bg-gray-200 dark:bg-gray-900 p-10 rounded-md">
+<div id="clearance" class="drop-shadow-lg container mx-auto my-6 p-10 rounded-md">
   <h2 class="text-center text-3xl font-bold dark:text-white font-bold mb-10"><%= t(".title") %></h2>
 
-  <p><%= t(".description") %></p>
+  <p class="text-black dark:text-white"><%= t(".description") %></p>
 
   <%= form_for :password_reset,
         url: [@user, :password, token: @user.confirmation_token],
