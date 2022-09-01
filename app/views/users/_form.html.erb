@@ -1,9 +1,39 @@
-<div class="text-field">
-  <%= form.label :email %>
-  <%= form.email_field :email %>
+<div class="mb-6">
+  <%= form.label :name, class: "#{form_label(:name)}" %>
+  <%= form.text_field :name, class: "#{input(:name)}" %>
+  <% unless @user.errors.messages[:name].empty? %>
+    <% @user.errors.messages[:name].each do |message| %>
+      <p class="<%= message_validation %>"><%= "Name #{message}" %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="mb-6">
+  <%= form.label :artistic_name, class: "#{form_label(:artistic_name)}" %>
+  <%= form.text_field :artistic_name, class: "#{input(:artistic_name)}" %>
+  <% unless @user.errors.messages[:artistic_name].empty? %>
+    <% @user.errors.messages[:artistic_name].each do |message| %>
+      <p class="<%= message_validation %>"><%= "Artistic_name #{message}" %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="mb-6">
+  <%= form.label :email, class: "#{form_label(:email)}" %>
+  <%= form.email_field :email, class: "#{input(:email)}" %>
+  <% unless @user.errors.messages[:email].empty? %>
+    <% @user.errors.messages[:email].each do |message| %>
+      <p class="<%= message_validation %>"><%= "Email #{message}" %></p>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="password-field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
+  <%= form.label :password, class: "#{form_label(:password)}" %>
+  <%= form.password_field :password, class: "#{input(:password)}" %>
+  <% unless @user.errors.messages[:password].empty? %>
+    <% @user.errors.messages[:password].each do |message| %>
+      <p class="<%= message_validation %>"><%= "Password #{message}" %></p>
+    <% end %>
+  <% end %>
 </div>

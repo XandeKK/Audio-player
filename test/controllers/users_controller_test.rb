@@ -4,6 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get sign_up_path
     assert_response :success
+    assert_select "h2", "Sign up"
   end
 
   test "should sign up" do
@@ -17,6 +18,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         }
       }
       assert_response :redirect
+      follow_redirect!
+      # assert_select "h2", "Home"
     end
   end
 
@@ -31,6 +34,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         }
       }
       assert_response :redirect
+      # assert_select "h2", "Home"
     end
   end
 
@@ -45,6 +49,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         }
       }
       assert_response :unprocessable_entity
+      assert_select "h2", "Sign up"
     end
   end
 
@@ -59,6 +64,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         }
       }
       assert_response :unprocessable_entity
+      assert_select "h2", "Sign up"
     end
   end
 
@@ -73,6 +79,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         }
       }
       assert_response :unprocessable_entity
+      assert_select "h2", "Sign up"
     end
   end
 end

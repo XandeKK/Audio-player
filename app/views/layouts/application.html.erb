@@ -11,9 +11,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-gray-100 dark:bg-gray-700">
     <%= render partial: "shared/navbar" unless ["users", "sessions", "passwords"].include?(controller_name)%>
-    <main class="container">
+    <main>
       <%= yield %>
     </main>
   </body>

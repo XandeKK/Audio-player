@@ -1,22 +1,24 @@
-<%= form_for :session, url: session_path do |form| %>
-  <div class="text-field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
+<%= form_for :session, url: session_path, data: {turbo: false} do |form| %>
+  <div class="mb-6">
+    <%= form.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+    <%= form.email_field :email, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %>
   </div>
 
   <div class="password-field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.label :password, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+    <%= form.password_field :password, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %>
+    <div class="text-end my-3">
+      <%= link_to t(".forgot_password"), new_password_path, class: "text-black dark:text-white hover:text-sky hover:dark:text-blue" %>
+    </div>
   </div>
 
-  <div class="submit-field">
-    <%= form.submit %>
+  <div class="flex flex-row-reverse my-3">
+    <%= form.submit class: "cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
   </div>
 
-  <div class="other-links">
-    <% if Clearance.configuration.allow_sign_up? %>
-      <%= link_to t(".sign_up"), sign_up_path %>
-    <% end %>
-    <%= link_to t(".forgot_password"), new_password_path %>
-  </div>
 <% end %>
+<div class="text-center">
+  <% if Clearance.configuration.allow_sign_up? %>
+    <%= link_to t(".sign_up"), sign_up_path, class: "transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+  <% end %>
+</div>
