@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  before_action :require_login
   def index
     q = Author.ransack(user_artistic_name_or_music_title_cont_any: params[:q].split(" "))
     @authors = q.result.includes(:user, :music)

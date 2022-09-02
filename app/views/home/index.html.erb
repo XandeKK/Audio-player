@@ -1,5 +1,3 @@
-
-
 <div id="playlist_body" class="container mx-auto mb-64">
   <h2 class="text-2xl font-bold text-center text-black dark:text-white my-6">Recents</h2>
   <div class="grid gap-4 grid-cols-2 md:grid-cols-5">
@@ -25,8 +23,8 @@
       {
         "name": "<%= random.music.title %>",
         "artist": "<%= random.user.artistic_name %>",
-        "url": "<%= url_for random.music.music %>",
-        "cover_art_url": "<%= url_for random.music.image_cover %>",
+        "url": "<%= url_for random.music.music if random.music.music.attached?  %>",
+        "cover_art_url": "<%= url_for random.music.image_cover if random.music.image_cover.attached? %>",
       },
     <% end %>
   ]
@@ -36,8 +34,8 @@
       {
         "name": "<%= recent.music.title %>",
         "artist": "<%= recent.user.artistic_name %>",
-        "url": "<%= url_for recent.music.music %>",
-        "cover_art_url": "<%= url_for recent.music.image_cover %>",
+        "url": "<%= url_for recent.music.music if recent.music.music.attached? %>",
+        "cover_art_url": "<%= url_for recent.music.image_cover if recent.music.image_cover.attached? %>",
       },
     <% end %>
   ]

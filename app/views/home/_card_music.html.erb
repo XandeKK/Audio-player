@@ -1,6 +1,6 @@
 <div class="max-w-xs bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <%= image_tag music.music.image_cover, class: "rounded-t-lg"%>
+        <%= image_tag music.music.image_cover, class: "rounded-t-lg" if music.music.image_cover.attached?%>
     </a>
     <div class="p-5">
         <a href="#">
