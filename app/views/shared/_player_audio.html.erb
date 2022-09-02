@@ -1,4 +1,4 @@
-<div class="fixed bottom-0 bg-[#F8FAFC] dark:bg-gray-900 w-screen flex flex-col items-center justify-center">
+<div id="player-audio" class="fixed bottom-0 bg-[#F8FAFC] dark:bg-gray-900 w-screen flex flex-col items-center justify-center" data-turbo-permanent>
   <div class="relative w-full flex flex-col rounded-xl shadow-player-light bg-player-light-background border border-player-light-border dark:shadow-player-dark dark:bg-player-dark-background dark:border-player-dark-border dark:backdrop-blur-xl">
     <div class="px-10 pt-10 pb-4 flex items-center z-50">
       <img data-amplitude-song-info="cover_art_url" class="w-12 h-12 rounded-md mr-6 border border-bg-player-light-background dark:border-cover-dark-border" />
@@ -64,8 +64,6 @@
     <div class="hidden top-14 w-full absolute ml-auto mr-auto left-0 right-0 text-center max-w-lg h-72 rounded-full bg-highlight blur-2xl dark:block">
     </div>
   </div>
-</div>
-
 <script type="text/javascript">
   Amplitude.init({
     "bindings": {
@@ -87,3 +85,4 @@
     }
   });
 </script>
+</div>
