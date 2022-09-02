@@ -17,8 +17,8 @@ class SearchController < ApplicationController
       @json.append({
         "name": author.music.title,
         "artist": "Artist Name",
-        "url": url_for(author.music.music),
-        "cover_art_url": url_for(author.music.image_cover)
+        "url": (url_for(author.music.music) if author.music.music.attached?),
+        "cover_art_url": (url_for(author.music.image_cover) if author.music.image_cover.attached?)
       })
     end
   end
