@@ -1,4 +1,47 @@
-<div>
-  <h1 class="font-bold text-4xl">Home#index</h1>
-  <p>Find me in app/views/home/index.html.erb</p>
+<div class="container mx-auto mb-64">
+  <h2 class="text-2xl font-bold text-center text-black dark:text-white my-6">Recents</h2>
+  <div class="grid gap-4 grid-cols-2 md:grid-cols-5">
+    <% @recents.each_with_index do |recent, index| %>
+      <div>
+        <%= render partial: "card_music", locals: {music: recent, index: index, name: "recents"} %>
+      </div>
+    <% end %>
+  </div>
+  <h2 class="text-2xl font-bold text-center text-black dark:text-white my-6">Random</h2>
+  <div class="grid gap-4 grid-cols-2 md:grid-cols-5">
+    <% @random.each_with_index do |random, index| %>
+      <div>
+        <%= render partial: "card_music", locals: {music: random, index: index, name: "random"} %>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<script type="text/javascript">
+  random_songs = [
+    <% @random.each do |random| %>
+      {
+        "name": "<%= random.music.title %>",
+        "artist": "<%= random.user.artistic_name %>",
+        "url": "<%= url_for random.music.music %>",
+        "cover_art_url": "<%= url_for random.music.image_cover %>",
+      },
+    <% end %>
+  ]
+
+  recent_songs = [
+    <% @recents.each do |recent| %>
+      {
+        "name": "<%= recent.music.title %>",
+        "artist": "<%= recent.user.artistic_name %>",
+        "url": "<%= url_for recent.music.music %>",
+        "cover_art_url": "<%= url_for recent.music.image_cover %>",
+      },
+    <% end %>
+  ]
+
+  Amplitude.addPlaylist( "recents", "", recent_songs );
+  Amplitude.addPlaylist( "random", "", random_songs );
+  Amplitude.bindNewElements();
+
+</script>
