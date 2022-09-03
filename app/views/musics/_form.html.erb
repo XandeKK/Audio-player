@@ -1,0 +1,36 @@
+<div class="mb-6">
+  <%= form.label :title, class: "#{form_label(:title, @music)}" %>
+  <%= form.text_field :title, class: "#{input(:title, @music)}" %>
+  <% unless @music.errors.messages[:title].empty? %>
+    <% @music.errors.messages[:title].each do |message| %>
+      <p class="<%= message_validation %>"><%= "Title #{message}" %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="mb-6">
+  <% if action_name == "edit" %>
+    <audio controls>
+      <source src="<%= url_for(@music.music) if @music.music.attached? %>" type="audio/<%= url_for(@music.music).split(".").last %>">
+    Your browser does not support the audio element.
+    </audio>
+  <% end %>
+  <%= form.label :music, class: "#{form_label(:music, @music)}" %>
+  <%= form.file_field :music, class: "block w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400", accept: "audio/*" %>
+  <% unless @music.errors.messages[:music].empty? %>
+    <% @music.errors.messages[:music].each do |message| %>
+      <p class="<%= message_validation %>"><%= "Music #{message}" %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="mb-6">
+  <%= image_tag @music.image_cover.variant(resize_to_limit: [100, 100]) if action_name == "edit" %>
+  <%= form.label :image_cover, class: "#{form_label(:image_cover, @music)}" %>
+  <%= form.file_field :image_cover, class: "block w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400", accept: "image/*" %>
+  <% unless @music.errors.messages[:image_cover].empty? %>
+    <% @music.errors.messages[:image_cover].each do |message| %>
+      <p class="<%= message_validation %>"><%= "Image cover #{message}" %></p>
+    <% end %>
+  <% end %>
+</div>

@@ -1,4 +1,4 @@
-<nav id="navbar" class="fixed top-0 left-0 right-0 bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900" data-turbo-permanent>
+<nav id="navbar" class="fixed top-0 left-0 right-0 bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900 z-50 " data-turbo-permanent>
   <div class="container flex flex-wrap justify-between items-center mx-auto">
     <%= link_to root_path, class: "flex items-center" do%>
     <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Audio Player</span>
@@ -18,7 +18,7 @@
         </div>
         <ul class="py-1" aria-labelledby="user-menu-button">
           <li>
-            <%= button_to "Sign out", sign_out_path, method: :delete, form_class: "text-start", class: "w-full block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" %>
+            <%= button_to "Sign out", sign_out_path, method: :delete, form_class: "text-start", class: "w-full block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white", data: {turbo: false} %>
           </li>
         </ul>
       </div>
