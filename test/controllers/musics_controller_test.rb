@@ -10,6 +10,8 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
     
     get new_music_path
     assert_response :success
+
+    assert_select "h2", "New Song"
   end
 
   test "should get edit" do
@@ -17,6 +19,8 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
     
     get edit_music_path(@music)
     assert_response :success
+
+    assert_select "h2", "Edit Song"
   end
 
   test "should not get edit that belongs to the other" do
@@ -43,6 +47,10 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
               }
             }
             assert_response :redirect
+            follow_redirect!
+            
+            assert_select "h1", users(:one).name
+            assert_select "h2", users(:one).artistic_name
           end
         end
       end
@@ -66,6 +74,9 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
               }
             }
             assert_response :unprocessable_entity
+
+            assert_select "h2", "New Song"
+            assert_select "#music_title[value=?]", ""
           end
         end
       end
@@ -89,6 +100,9 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
               }
             }
             assert_response :unprocessable_entity
+
+            assert_select "h2", "New Song"
+            assert_select "#music_title[value=?]", "time for love"
           end
         end
       end
@@ -112,6 +126,9 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
               }
             }
             assert_response :unprocessable_entity
+
+            assert_select "h2", "New Song"
+            assert_select "#music_title[value=?]", "time for love"
           end
         end
       end
@@ -135,6 +152,11 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
           }
         }
         assert_response :redirect
+
+        follow_redirect!
+            
+        assert_select "h1", users(:one).name
+        assert_select "h2", users(:one).artistic_name
       end
     end
   end
@@ -156,6 +178,9 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
           }
         }
         assert_response :unprocessable_entity
+
+        assert_select "h2", "Edit Song"
+        assert_select "#music_title[value=?]", ""
       end
     end
   end
@@ -177,6 +202,9 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
           }
         }
         assert_response :unprocessable_entity
+
+        assert_select "h2", "Edit Song"
+        assert_select "#music_title[value=?]", "Green day"
       end
     end
   end
@@ -198,6 +226,9 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
           }
         }
         assert_response :unprocessable_entity
+
+        assert_select "h2", "Edit Song"
+        assert_select "#music_title[value=?]", "Green day"
       end
     end
   end
