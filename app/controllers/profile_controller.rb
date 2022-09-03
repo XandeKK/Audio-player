@@ -42,7 +42,6 @@ class ProfileController < ApplicationController
 
   def profile_params
     params.require(:user).
-      permit(:name, :artistic_name, :email, :password).
-      delete_if {|key, value| value.blank? }
+      permit(:name, :artistic_name, :email, :password)
   end
 end
