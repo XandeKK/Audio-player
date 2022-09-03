@@ -5,7 +5,6 @@ class ProfileController < ApplicationController
 
   def show
     @authors = Author.where(user: @user)
-    organize_data
     if @authors.present?
       @authors = @authors.includes(:user, :music)
     end
@@ -44,17 +43,5 @@ class ProfileController < ApplicationController
     params.require(:user).
       permit(:name, :artistic_name, :email, :password).
       delete_if {|key, value| value.blank? }
-  end
-
-  def organize_data
-    @json = []
-    @authors.each do |author|
-      @json.append({
-        "name": author.music.title,
-        "artist": "Artist Name",
-        "url": (url_for(author.music.music) if author.music.music.attached?),
-        "cover_art_url": (url_for(author.music.image_cover) if author.music.image_cover.attached?)
-      })
-    end
   end
 end

@@ -1,6 +1,4 @@
-<% hashing = BCrypt::Password.create(@authors) %>
-
-<div class="container mx-auto mt-20 mb-64">
+<div id="playlist_body" class="container mx-auto mt-20 mb-64">
   <div id="profile mb-10">
     <h1 class="text-center text-3xl text-black dark:text-white"><%= @user.name %></h1>
     <h2 class="text-center text-2xl text-black dark:text-white"><%= @user.artistic_name %></h2>
@@ -20,9 +18,10 @@
         <h2 class="text-center text-2xl text-black dark:text-white">Their songs</h2>
       <% end %>
       <div class="grid gap-4 grid-cols-2 md:grid-cols-5">
+        <% authors_hashing = hashing(@authors) %>
         <% @authors.each_with_index do |author, index| %>
           <div>
-            <%= render partial: "home/card_music", locals: {music: author, index: index, name: "#{hashing}"} %>
+            <%= render partial: "home/card_music", locals: {music: author, index: index, name: "#{authors_hashing}"} %>
             <% if current_user == @user %>
               <div class="flex">
                 <%= link_to "Edit", edit_music_path(author.music), class: "focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" %>
@@ -32,7 +31,7 @@
           </div>
         <% end %>
       </div>
-      <div id="playlist" data-name-playlist="<%= hashing %>" data-controller="search" data-item-playlist-param='<%= @json.to_json %>'></div>
+      <div id="playlist" data-name-playlist="<%= authors_hashing %>" data-controller="search" data-item-playlist-param='<%= organize_data(@authors) %>'></div>
     <% else %>
       <h2 class="text-center text-2xl text-black dark:text-white">There are no songs</h2>
     <% end %>

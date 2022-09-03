@@ -18,4 +18,22 @@ module ApplicationHelper
   def message_validation
     "mt-2 text-sm text-red-600 dark:text-red-500"
   end
+
+
+  def organize_data model
+    json = []
+    model.each do |author|
+      json.append({
+        "name": author.music.title,
+        "artist": "Artist Name",
+        "url": (url_for(author.music.music) if author.music.music.attached?),
+        "cover_art_url": (url_for(author.music.image_cover) if author.music.image_cover.attached?)
+      })
+    end
+    json.to_json
+  end
+
+  def hashing model
+    BCrypt::Password.create(model)
+  end
 end
