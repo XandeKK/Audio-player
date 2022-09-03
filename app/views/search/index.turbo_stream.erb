@@ -9,6 +9,6 @@
         </div>
       <% end %>
     </div>
-    <div id="playlist" data-name-playlist="<%= authors_hashing %>" data-controller="search"  data-item-playlist-param='<%= @json.to_json %>'></div>
+    <div id="playlist" data-name-playlist="<%= authors_hashing %>" data-controller="search"  data-item-playlist-param='<%= organize_data(@authors) %>'></div>
   </div>
 <% end %>
