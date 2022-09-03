@@ -1,4 +1,41 @@
-<div>
-  <h1 class="font-bold text-4xl">Profile#show</h1>
-  <p>Find me in app/views/profile/show.html.erb</p>
+<% hashing = BCrypt::Password.create(@authors) %>
+
+<div class="container mx-auto mt-20 mb-64">
+  <div id="profile mb-10">
+    <h1 class="text-center text-3xl text-black dark:text-white"><%= @user.name %></h1>
+    <h2 class="text-center text-2xl text-black dark:text-white"><%= @user.artistic_name %></h2>
+  </div>
+
+  <div id="musics" class="mt-6">
+    <% if @user == current_user%>
+      <div class="flex flex-row-reverse m-10">
+        <%= link_to "New", new_music_path, class: "focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300", data: {turbo: false} %>
+
+      </div>
+    <% end %>
+    <% if @authors.present? %>
+      <% if current_user == @user %>
+        <h2 class="text-center text-2xl text-black dark:text-white">Your songs</h2>
+      <% else %>
+        <h2 class="text-center text-2xl text-black dark:text-white">Their songs</h2>
+      <% end %>
+      <div class="grid gap-4 grid-cols-2 md:grid-cols-5">
+        <% @authors.each_with_index do |author, index| %>
+          <div>
+            <%= render partial: "home/card_music", locals: {music: author, index: index, name: "#{hashing}"} %>
+            <% if current_user == @user %>
+              <div class="flex">
+                <%= link_to "Edit", edit_music_path(author.music), class: "focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" %>
+                <%= button_to "Destroy", music_path(author.music), method: :delete, class: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div id="playlist" data-name-playlist="<%= hashing %>" data-controller="search" data-item-playlist-param='<%= @json.to_json %>'></div>
+    <% else %>
+      <h2 class="text-center text-2xl text-black dark:text-white">There are no songs</h2>
+    <% end %>
+
+  </div>
 </div>

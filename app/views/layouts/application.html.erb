@@ -14,7 +14,7 @@
   </head>
 
   <body class="bg-[#F8FAFC] dark:bg-[#0A1122]">
-    <%= render partial: "shared/player_audio" unless ["users", "sessions", "passwords"].include?(controller_name) %>
+    <%= render partial: "shared/player_audio" unless ["users", "sessions", "passwords", "musics"].include?(controller_name) %>
     <%= render partial: "shared/navbar" unless ["users", "sessions", "passwords"].include?(controller_name)%>
     <main>
       <%= yield %>
