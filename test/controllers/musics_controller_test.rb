@@ -12,13 +12,6 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get show" do
-    sign_in
-    
-    get music_path(@music)
-    assert_response :success
-  end
-
   test "should get edit" do
     sign_in
     

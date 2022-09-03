@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   delete "/sign_out" => "sessions#destroy", as: "sign_out"
   get "/sign_up" => "users#new", as: "sign_up"
 
-  resources :musics, except: :index
+  resources :musics, except: [:index, :show]
 
   resources :profile, except: [:index, :new, :create, :destroy]
   delete "/delete/profile", to: "profile#destroy", as: "delete_profile"

@@ -12,13 +12,10 @@ class MusicsController < ApplicationController
 
     if @music.save
       @music.authors.create!(user: current_user, music: @music)
-      redirect_to music_path(@music)
+      redirect_to profile_path(current_user)
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
   end
 
   def edit
@@ -26,7 +23,7 @@ class MusicsController < ApplicationController
 
   def update
     if @music.update(music_params)
-      redirect_to music_path(@music)
+      redirect_to profile_path(current_user)
     else
       render :edit, status: :unprocessable_entity
     end

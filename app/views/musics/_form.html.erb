@@ -25,7 +25,7 @@
 </div>
 
 <div class="mb-6">
-  <%= image_tag @music.image_cover.variant(resize_to_limit: [100, 100]) if action_name == "edit" %>
+  <%= image_tag @music.image_cover.variant(resize_to_limit: [100, 100]) if action_name == "edit" && @music.music.attached? %>
   <%= form.label :image_cover, class: "#{form_label(:image_cover, @music)}" %>
   <%= form.file_field :image_cover, class: "block w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400", accept: "image/*" %>
   <% unless @music.errors.messages[:image_cover].empty? %>
