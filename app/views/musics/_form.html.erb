@@ -9,9 +9,9 @@
 </div>
 
 <div class="mb-6">
-  <% if action_name == "edit" %>
+  <% if action_name == "edit" && @music.music.attached? %>
     <audio controls>
-      <source src="<%= url_for(@music.music) if @music.music.attached? %>" type="audio/<%= url_for(@music.music).split(".").last %>">
+      <source src="<%= url_for(@music.music) %>" type="audio/<%= url_for(@music.music).split(".").last %>">
     Your browser does not support the audio element.
     </audio>
   <% end %>

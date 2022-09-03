@@ -2,9 +2,11 @@
   <div id="profile mb-10">
     <h1 class="text-center text-3xl text-black dark:text-white"><%= @user.name %></h1>
     <h2 class="text-center text-2xl text-black dark:text-white"><%= @user.artistic_name %></h2>
+    <% if current_user == @user %>
     <div class="flex flex-row-reverse">
-      <%= button_to "Destroy", delete_profile_path, method: :delete, class: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300", data: {turbo: false} %>
-      <%= link_to "Edit", edit_profile_path(current_user), class: "focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300", data: {turbo: false} %>
+        <%= button_to "Destroy", delete_profile_path, method: :delete, class: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300", data: {turbo: false} %>
+        <%= link_to "Edit", edit_profile_path(current_user), class: "focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300", data: {turbo: false} %>
+      <% end %>
     </div>
   </div>
 
