@@ -1,4 +1,4 @@
-<div id="playlist_body" class="container mx-auto mt-20 mb-64">
+<div id="playlist_body" class="container mx-auto mt-20">
   <div id="profile mb-10">
     <h1 class="text-center text-3xl text-black dark:text-white"><%= @user.name %></h1>
     <h2 class="text-center text-2xl text-black dark:text-white"><%= @user.artistic_name %></h2>
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div id="musics" class="mt-6">
+  <div id="musics" class="mt-6 mb-64">
     <% if @user == current_user%>
       <div class="flex flex-row-reverse m-10">
         <%= link_to "New", new_music_path, class: "focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300", data: {turbo: false} %>

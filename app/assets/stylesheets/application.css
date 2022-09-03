@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+
+.border-play-pause-light-border {
+    border-color: rgba(15, 23, 42, 0.06);
+  }
+  
+  .dark .dark\:border-play-pause-dark-border {
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .dark .dark\:bg-play-pause-dark-background {
+    --tw-bg-opacity: 1;
+    background-color: rgb(47 59 79 / var(--tw-bg-opacity));
+  }
+
+  div.amplitude-play-pause.amplitude-playing #pause-icon{
+    display: block;
+  }
+
+  div.amplitude-play-pause.amplitude-paused #pause-icon{
+    display: none;
+  }
+
+  div.amplitude-play-pause.amplitude-paused #play-icon{
+    display: block;
+  }
+
+  div.amplitude-play-pause.amplitude-playing #play-icon{
+    display: none;
+  }
+
+  div.amplitude-shuffle.amplitude-shuffle-on svg path{
+    fill: #38BDF8;
+  }
+
+  div.amplitude-repeat-song.amplitude-repeat-song-on svg path{
+    fill: #38BDF8;
+  }
