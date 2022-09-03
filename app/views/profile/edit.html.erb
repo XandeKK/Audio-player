@@ -1,4 +1,12 @@
-<div>
-  <h1 class="font-bold text-4xl">Profile#edit</h1>
-  <p>Find me in app/views/profile/edit.html.erb</p>
+<div class="drop-shadow-lg container mx-auto my-6 p-10 rounded-md">
+  <h2 class="text-center text-3xl font-bold dark:text-white font-bold mb-10">Edit profile</h2>
+
+  <%= form_for @user, url: profile_path, data: {turbo: false} do |form| %>
+    <%= render partial: '/users/form', object: form %>
+
+    <div class="flex flex-row-reverse my-3">
+      <%= form.submit class: "cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+    </div>
+
+  <% end %>
 </div>

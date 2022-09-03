@@ -14,6 +14,7 @@ class ProfileController < ApplicationController
   end
 
   def update
+    redirect_to root_path, status: :unprocessable_entity if @user != current_user
     if @user.update(profile_params)
       redirect_to profile_path(@user)
     else
