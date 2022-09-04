@@ -2,8 +2,8 @@ require "test_helper"
 
 class MusicTest < ActiveSupport::TestCase
   def setup
-    music = File.open("#{Rails.root}/test/fixtures/files/music/time-for-love.mp3")
-    image_cover = File.open("#{Rails.root}/test/fixtures/files/image/time-for-love.jpg")
+    music = File.open("#{Rails.root}/test/fixtures/files/time-for-love.mp3")
+    image_cover = File.open("#{Rails.root}/test/fixtures/files/time-for-love.jpg")
 
     @music = Music.new(title: "time for love")
     @music.music.attach(io: music, filename: 'time-for-love.mp3')
@@ -40,10 +40,10 @@ class MusicTest < ActiveSupport::TestCase
   test "should update" do
     @music.save
 
-    music_file = File.open("#{Rails.root}/test/fixtures/files/music/time-for-love.mp3")
+    music_file = File.open("#{Rails.root}/test/fixtures/files/time-for-love.mp3")
     @music.music.attach(io: music_file, filename: 'time-for-love-2.mp3')
 
-    image_file = File.open("#{Rails.root}/test/fixtures/files/image/time-for-love.jpg")
+    image_file = File.open("#{Rails.root}/test/fixtures/files/time-for-love.jpg")
     @music.image_cover.attach(io: image_file, filename: 'time-for-love-2.jpg')
 
     assert @music.update(title: "IIDD")

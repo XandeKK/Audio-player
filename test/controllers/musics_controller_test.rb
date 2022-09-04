@@ -40,8 +40,8 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
             post musics_path, params: {
               music: {
                 title: "time for love",
-                image_cover: fixture_file_upload("image/time-for-love.jpg"),
-                music: fixture_file_upload("music/time-for-love.mp3"),
+                image_cover: fixture_file_upload("time-for-love.jpg"),
+                music: fixture_file_upload("time-for-love.mp3"),
                 authors_attributes: [ {user_id: users(:two).id} ],
                 music_categories_attributes: [ category_id: categories(:one).id ]
               }
@@ -67,8 +67,8 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
             post musics_path, params: {
               music: {
                 title: nil,
-                image_cover: fixture_file_upload("image/time-for-love.jpg"),
-                music: fixture_file_upload("music/time-for-love.mp3"),
+                image_cover: fixture_file_upload("time-for-love.jpg"),
+                music: fixture_file_upload("time-for-love.mp3"),
                 authors_attributes: [],
                 music_categories_attributes: []
               }
@@ -94,7 +94,7 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
               music: {
                 title: "time for love",
                 # image_cover: nil,
-                music: fixture_file_upload("music/time-for-love.mp3"),
+                music: fixture_file_upload("time-for-love.mp3"),
                 authors_attributes: [],
                 music_categories_attributes: []
               }
@@ -119,7 +119,7 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
             post musics_path, params: {
               music: {
                 title: "time for love",
-                image_cover: fixture_file_upload("image/time-for-love.jpg"),
+                image_cover: fixture_file_upload("time-for-love.jpg"),
                 # music: nil,
                 authors_attributes: [],
                 music_categories_attributes: []
@@ -140,13 +140,13 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
 
     music = musics(:one)
 
-    assert_difference("ActiveStorage::Attachment.count", 2) do
+    assert_difference("ActiveStorage::Attachment.count", 0) do
       assert_difference("Author.count") do
         put music_path(music), params: {
           music: {
             title: "Green day",
-            image_cover: fixture_file_upload("image/time-for-love.jpg"),
-            music: fixture_file_upload("music/time-for-love.mp3"),
+            image_cover: fixture_file_upload("time-for-love.jpg"),
+            music: fixture_file_upload("time-for-love.mp3"),
             authors_attributes: [ user_id: users(:two).id ],
             music_categories_attributes: []
           }
@@ -171,8 +171,8 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
         put music_path(music), params: {
           music: {
             title: nil,
-            image_cover: fixture_file_upload("image/time-for-love.jpg"),
-            music: fixture_file_upload("music/time-for-love.mp3"),
+            image_cover: fixture_file_upload("time-for-love.jpg"),
+            music: fixture_file_upload("time-for-love.mp3"),
             authors_attributes: [ user_id: users(:two).id ],
             music_categories_attributes: []
           }
@@ -185,50 +185,54 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should not update without image cover" do
+  test "should update without image cover" do
     sign_in
 
     music = musics(:one)
 
     assert_no_difference("ActiveStorage::Attachment.count", 2) do
-      assert_no_difference("Author.count") do
+      assert_difference("Author.count", 1) do
         put music_path(music), params: {
           music: {
             title: "Green day",
             # image_cover: nil,
-            music: fixture_file_upload("music/time-for-love.mp3"),
+            music: fixture_file_upload("time-for-love.mp3"),
             authors_attributes: [ user_id: users(:two).id ],
             music_categories_attributes: []
           }
         }
-        assert_response :unprocessable_entity
+        assert_response :redirect
 
-        assert_select "h2", "Edit Song"
-        assert_select "#music_title[value=?]", "Green day"
+        follow_redirect!
+            
+        assert_select "h1", users(:one).name
+        assert_select "h2", users(:one).artistic_name
       end
     end
   end
 
-  test "should not update without music" do
+  test "should update without music" do
     sign_in
 
     music = musics(:one)
 
     assert_no_difference("ActiveStorage::Attachment.count", 2) do
-      assert_no_difference("Author.count") do
+      assert_difference("Author.count", 1) do
         put music_path(music), params: {
           music: {
             title: "Green day",
-            image_cover: fixture_file_upload("image/time-for-love.jpg"),
+            image_cover: fixture_file_upload("time-for-love.jpg"),
             # music: nil,
             authors_attributes: [ user_id: users(:two).id ],
             music_categories_attributes: []
           }
         }
-        assert_response :unprocessable_entity
+        assert_response :redirect
 
-        assert_select "h2", "Edit Song"
-        assert_select "#music_title[value=?]", "Green day"
+        follow_redirect!
+            
+        assert_select "h1", users(:one).name
+        assert_select "h2", users(:one).artistic_name
       end
     end
   end
