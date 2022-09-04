@@ -23,4 +23,32 @@ class ActiveSupport::TestCase
       }
     }
   end
+
+  def sign_in_system_test
+    visit sign_in_url
+  
+    assert_text "Sign in"
+
+    fill_in "Email", with: users(:one).email
+    fill_in "Password", with: "password"
+
+    click_on "Sign in"
+
+    assert_text "Recents"
+    assert_text "Random"
+  end
+
+  def move_to_profile
+    loop do
+      find('#user-menu-button > div').click
+      if has_xpath? '//*[@id="user-dropdown"]'
+        break if find(:xpath, '//*[@id="user-dropdown"]').visible?
+      end
+    end
+    click_on users(:one).name
+
+    assert_text users(:one).name
+    assert_text users(:one).artistic_name
+    assert_text musics(:one).title
+  end
 end

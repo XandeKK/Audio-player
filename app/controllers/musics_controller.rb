@@ -31,7 +31,7 @@ class MusicsController < ApplicationController
 
   def destroy
     if @music.destroy
-      redirect_to root_path
+      redirect_to profile_path(current_user)
     else
       redirect_to root_path, status: :unprocessable_entity
     end

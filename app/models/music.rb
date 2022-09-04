@@ -8,6 +8,10 @@ class Music < ApplicationRecord
   has_one_attached :image_cover
 
   validates :title, presence: true
-  validates :music, attached: true, size: { less_than: 500.megabytes , message: 'is too large' }
-  validates :image_cover, attached: true, size: { less_than: 10.megabytes , message: 'is too large' }
+  validates :music, attached: true,
+    content_type: /\Aaudio\/.*\z/,
+    size: { less_than: 500.megabytes , message: 'is too large' }
+  validates :image_cover, attached: true,
+    content_type: /\Aimage\/.*\z/,
+    size: { less_than: 10.megabytes , message: 'is too large' }
 end

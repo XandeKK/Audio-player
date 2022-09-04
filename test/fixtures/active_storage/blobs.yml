@@ -1,0 +1,5 @@
+one_image_cover_blob: <%= ActiveStorage::FixtureSet.blob filename: "time-for-love.jpg" %>
+one_music_blob: <%= ActiveStorage::FixtureSet.blob filename: "time-for-love.mp3" %>
+
+two_image_cover_blob: <%= ActiveStorage::FixtureSet.blob filename: "time-for-love.jpg" %>
+two_music_blob: <%= ActiveStorage::FixtureSet.blob filename: "time-for-love.mp3" %>

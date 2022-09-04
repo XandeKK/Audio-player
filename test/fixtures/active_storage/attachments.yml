@@ -1,0 +1,19 @@
+one_image_cover_attachment:
+  name: image_cover
+  record: one (Music)
+  blob: one_image_cover_blob
+
+one_music_attachment:
+  name: music
+  record: one (Music)
+  blob: one_music_blob
+
+two_image_cover_attachment:
+  name: image_cover
+  record: two (Music)
+  blob: two_image_cover_blob
+
+two_music_attachment:
+  name: music
+  record: two (Music)
+  blob: two_music_blob
